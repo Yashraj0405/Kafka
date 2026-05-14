@@ -14,7 +14,7 @@ public class KafkaMessagePublisher {
     private KafkaTemplate<String, Object> kafkaTemplate;
 
     public void sendMessageToTopic(String message){
-        CompletableFuture<SendResult<String, Object>> send = kafkaTemplate.send("kafka-pro", message);
+        CompletableFuture<SendResult<String, Object>> send = kafkaTemplate.send("kafka-pro-T", message);
         send.whenComplete((result, ex) -> {
             if (ex != null) {
                 System.err.println("Failed to send message: " + ex.getMessage());
