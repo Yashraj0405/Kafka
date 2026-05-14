@@ -1,12 +1,10 @@
 package com.kp.controller;
 
+import com.kp.dto.Customer;
 import com.kp.service.KafkaMessagePublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/k-producer")
@@ -26,4 +24,13 @@ public class EventController {
             return ResponseEntity.status(500).body("Failed to publish message: " + e.getMessage());
         }
     }
+
+    @PostMapping("/publish")
+    public void sendEvent(@RequestBody Customer customer){
+        try{
+            kafkaMessagePublisher.sendEventsToTopic(customer);
+        }catch (Exception e){
+            System.err.println("Failed to send event: " + e.getMessage());
+        }
+     }
 }
