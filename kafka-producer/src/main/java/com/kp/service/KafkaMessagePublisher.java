@@ -16,7 +16,7 @@ public class KafkaMessagePublisher {
     private KafkaTemplate<@NonNull String, @NonNull Object> kafkaTemplate;
 
     public void sendMessageToTopic(String message){
-        CompletableFuture<SendResult<@NonNull String, @NonNull Object>> send = kafkaTemplate.send("kafka-pro-T", message);
+        CompletableFuture<SendResult<@NonNull String, @NonNull Object>> send = kafkaTemplate.send("kafka-pro-T-4",3,null, message);
         send.whenComplete((result, ex) -> {
             if (ex != null) {
                 System.err.println("Failed to send message: " + ex.getMessage());
@@ -29,7 +29,7 @@ public class KafkaMessagePublisher {
     public void sendEventsToTopic(Customer customer){
 
         try {
-            CompletableFuture<SendResult<@NonNull String, @NonNull Object>> send = kafkaTemplate.send("kafka-pro-T-3", customer);
+            CompletableFuture<SendResult<@NonNull String, @NonNull Object>> send = kafkaTemplate.send("kafka-pro-T-4", customer);
             send.whenComplete((result, ex) -> {
                 if (ex != null) {
                     System.err.println("Failed to send message: " + ex.getMessage());
