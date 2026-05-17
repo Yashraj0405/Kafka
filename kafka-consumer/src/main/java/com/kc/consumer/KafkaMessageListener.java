@@ -11,16 +11,16 @@ public class KafkaMessageListener {
 
     Logger  logger = org.slf4j.LoggerFactory.getLogger(KafkaMessageListener.class);
 
-//    @KafkaListener(topics = "kafka-pro-T-4", groupId = "kafka-consumer")
-//    public void consume(Customer customer){
-//        logger.info(" Consumer - Received message: {}", customer);
-//    }
+    @KafkaListener(topics = "kafka-pro-T-4", groupId = "kafka-consumer")
+    public void consumeEvent(Customer customer){
+        logger.info(" Consumer - Received message: {}", customer.toString());
+    }
 
     //Listing to specific partition of the topic
-    @KafkaListener( groupId = "kafka-consumer", topicPartitions = {@TopicPartition(topic = "kafka-pro-T-4", partitions = {"3"})})
-    public void consume2(String message){
-        logger.info("Consumer 2 - Received message: {}", message);
-    }
+//    @KafkaListener( groupId = "kafka-consumer", topicPartitions = {@TopicPartition(topic = "kafka-pro-T-4", partitions = {"3"})})
+//    public void consume2(String message){
+//        logger.info("Consumer 2 - Received message: {}", message);
+//    }
 //
 //    @KafkaListener(topics = "kafka-pro-T", groupId = "kafka-consumer-group")
 //    public void consume3(String message){
