@@ -26,11 +26,13 @@ public class EventController {
     }
 
     @PostMapping("/publish")
-    public void sendEvent(@RequestBody Customer customer){
+    public ResponseEntity<?> sendEvent(@RequestBody Customer customer){
         try{
             kafkaMessagePublisher.sendEventsToTopic(customer);
+            return ResponseEntity.ok("Event published successfully");
         }catch (Exception e){
             System.err.println("Failed to send event: " + e.getMessage());
+            return ResponseEntity.status(500).body("Failed to publish event: " + e.getMessage());
         }
      }
 }

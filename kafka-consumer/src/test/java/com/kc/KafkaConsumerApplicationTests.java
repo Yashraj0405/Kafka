@@ -36,7 +36,7 @@ class KafkaConsumerApplicationTests {
     @Test
     public void testConsumeEvent(){
         log.info("Sending message to Kafka topic...");
-        kafkaTemplate.send("kafka-pro-T-4", new Customer(256,"John Doe", "john@gmail.com", "1234567890"));
+        kafkaTemplate.send("kafka-pro-T-4", new Customer(256,"John Doe", "john@gmail.com", "1234567890","32.241.244.236"));
         log.info("Message sent to Kafka topic successfully.");
 
         // Add assertions to verify that the message was consumed successfully

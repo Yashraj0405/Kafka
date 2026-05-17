@@ -33,7 +33,7 @@ class KafkaProducerApplicationTests {
 
     @Test
     public void testSendEventsToTopic () {
-        kafkaMessagePublisher.sendEventsToTopic(new Customer(256,"John Doe", "john@gmail.com", "1234567890"));
+        kafkaMessagePublisher.sendEventsToTopic(new Customer(256,"John Doe", "john@gmail.com", "1234567890","32.241.244.236"));
         await().pollInterval(Duration.ofSeconds(3)).atMost(Duration.ofSeconds(10)).untilAsserted(() -> {
             // Assertions to verify that the message was sent successfully
         });
